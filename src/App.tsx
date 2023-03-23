@@ -32,6 +32,7 @@ function App() {
           <h2>
             Select your onboard meal
           </h2>
+          {/* This div is where we inject the DineUp order iframe */}
           <div id="dineup-order-react" />
         </div>
         <div>
@@ -42,6 +43,7 @@ function App() {
             <p>LAX - SFO</p>
             <p>$100</p>
           </div>
+          {/* This div is where we inject the line items from the callback */}
           <div id="dineup-checkout-react" />
           <div className='column'>
             <p><b>Total</b></p>
