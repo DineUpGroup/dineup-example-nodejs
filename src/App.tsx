@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import DineUp from '@dineupgroup/clientjs';
+import DineUp from "dineup-clientjs";
 
 const dineup = new DineUp();
 
