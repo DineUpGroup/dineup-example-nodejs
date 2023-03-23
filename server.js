@@ -26,8 +26,8 @@ var server = http.createServer(function (req, res) {
   } else if (req.url == "/confirm") {
     const flight_total = 100;
     // Always get the order details and subtotal from dineup for a particular order, since the client is untrusted
-    const { subtotal } = dineup.getOrder(order.id);
-    const total = order.subtotal + flight_total * 100; // subtotal is in smallest unit currency, adjust flight_total to match;
+    const { cart_subtotal } = dineup.getOrder(order.id);
+    const total = cart_subtotal + flight_total * 100; // subtotal is in smallest unit currency, adjust flight_total to match;
 
     /*
 
