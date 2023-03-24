@@ -6,7 +6,7 @@ See [App.tsx](src/App.tsx) for the client integration and [server.js](server.js)
 
 To start the web server:
 
-`npm run preview`
+`npm run dev`
 
 To start the API server:
 

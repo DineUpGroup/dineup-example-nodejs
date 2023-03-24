@@ -5,17 +5,14 @@ import DineUp from "dineup-clientjs";
 const dineup = new DineUp();
 
 function App() {
-  const [order_items, setOrderItems] = useState({ subtotal: 0 })
-  const [client_secret, setClientSecret] = useState('');
+  const [order, setOrder] = useState({ subtotal: 0, line_items: [] })
 
   useEffect(() => {
     fetch("http://localhost:5000/create")
       .then((res) => res.json())
       .then((data) => {
-        setClientSecret(data.client_secret);
+        dineup.init(data.client_secret);
       });
-
-    dineup.init(client_secret);
   }, [])
 
   const onCheckout = () => {
@@ -39,15 +36,26 @@ function App() {
           <h2>
             Cart
           </h2>
-          <div className='column'>
-            <p>LAX - SFO</p>
-            <p>$100</p>
+          <div className='row' style={{ marginBottom: "1rem" }}>
+            <b>LAX - SFO</b>
+            <p>$100.00</p>
           </div>
-          {/* This div is where we inject the line items from the callback */}
-          <div id="dineup-checkout-react" />
-          <div className='column'>
+          {
+            order.line_items.map((item, index) => {
+              return (
+                <div className='row food' key={index}>
+                  <div className='item-desc'>
+                    <span>{item.quantity}x</span>
+                    <span>{item.name}</span>
+                  </div>
+                  <p>{(item.amount * item.quantity / 100).toLocaleString("en-US", { style: "currency", currency: "USD" })}</p>
+                </div>
+              )
+            })
+          }
+          <div className='row' style={{ marginTop: "1rem" }}>
             <p><b>Total</b></p>
-            <p>${100 + order_items.subtotal || 0}</p>
+            <p><b>{(100 + order.subtotal / 100).toLocaleString("en-US", { style: "currency", currency: "USD" })}</b></p>
           </div>
         </div>
       </div>

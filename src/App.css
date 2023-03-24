@@ -9,14 +9,29 @@
 .container {
   display: flex;
   margin: 0 auto;
-  gap: 8rem;
   justify-content: space-between;
   margin-bottom: 2rem;
   max-width: 600px;
 }
 
-.column {
+.row {
   display: flex; 
+  text-align: left;
+  align-items: start;
   gap: 4rem; 
   justify-content: space-between;
+}
+
+.item-desc {
+  display: flex;
+  gap: 0.5rem;
+}
+
+p {
+  margin: 0;
+}
+
+.food {
+  font-size: 0.825rem;
+  line-height: 1.25rem;
 }
