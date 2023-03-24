@@ -1,4 +1,4 @@
-# DineUp Node Example Integration
+# DineUp Nodejs Example Integration
 
 This repo contains a working example of the integration with the DineUp Order widget in a checkout page.
 
