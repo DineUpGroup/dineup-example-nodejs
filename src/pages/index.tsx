@@ -1,22 +1,24 @@
 import { useEffect, useState } from 'react'
-import './App.css'
-import DineUp from "dineup-clientjs";
+import { DineUp } from "dineup-clientjs";
+import { Order } from 'dineup-clientjs/dist/client-types';
 
-const dineup = new DineUp();
+const dineup = new DineUp({
+  element: "dineup-order-element"
+});
 
 function App() {
-  const [order, setOrder] = useState({ subtotal: 0, line_items: [] })
+  const [order, setOrder] = useState<Order>({ subtotal: 0, line_items: [] })
 
   useEffect(() => {
-    fetch("http://localhost:5000/create")
+    fetch("api/create")
       .then((res) => res.json())
       .then((data) => {
-        dineup.init(data.client_secret);
+        dineup.init(data.client_secret, setOrder);
       });
   }, [])
 
   const onCheckout = () => {
-    fetch("http://localhost:5000/confirm", {
+    fetch("api/confirm", {
       method: "POST",
     });
   }
@@ -30,7 +32,7 @@ function App() {
             Select your onboard meal
           </h2>
           {/* This div is where we inject the DineUp order iframe */}
-          <div id="dineup-order-react" />
+          <div id="dineup-order-element" />
         </div>
         <div>
           <h2>

@@ -2,12 +2,8 @@
 
 This repo contains a working example of the integration with the DineUp Order widget in a checkout page.
 
-See [App.tsx](src/App.tsx) for the client integration and [server.js](server.js) for the server integration
+See [index.tsx](src/pages/index.tsx) for the client integration and [[...path].ts](src/pages/api/[...path].ts) for the server integration
 
-To start the web server:
+To start the server:
 
 `npm run dev`
-
-To start the API server:
-
-`npm run server`
