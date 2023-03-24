@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import DineUp, { CreateOrderResponse } from "dineup-nodejs";
 
-const dineup = new DineUp("sk_test_...");
+const dineup = new DineUp("invalid_api_key");
 
 let order: CreateOrderResponse;
 
