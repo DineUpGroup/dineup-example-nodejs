@@ -6,10 +6,15 @@ For full functionality an API key from the DineUp team is required
 
 See [index.tsx](src/pages/index.tsx) for the client integration and [[...path].ts](src/pages/api/[...path].ts) for the server integration
 
+## Documentation 
+
 [Server integration documentation](https://www.npmjs.com/package/dineup-nodejs)
 
 [Client integration documentation](https://www.npmjs.com/package/dineup-clientjs)
 
+
+
+## Usage 
 
 To start the server:
 
