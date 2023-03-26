@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
-import { DineUp } from "dineup-clientjs";
-import { Order } from 'dineup-clientjs/dist/client-types';
+import { DineUp, ClientOrder } from "dineup-clientjs";
 
 const dineup = new DineUp({
   element: "dineup-order-element"
 });
 
 function App() {
-  const [order, setOrder] = useState<Order>({ subtotal: 0, line_items: [] })
+  const [order, setOrder] = useState<ClientOrder>({ line_items: [] })
+  const [error, setError] = useState<string>("");
+  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     fetch("api/create")
@@ -20,14 +21,27 @@ function App() {
   const onCheckout = () => {
     fetch("api/confirm", {
       method: "POST",
-    });
+    }).then(async (res) => {
+      if (res.status === 200) {
+        setSuccess(true);
+        setError("")
+      } else {
+        const body = await res.json();
+        setError(body.error);
+        setSuccess(false);
+      }
+    });;
   }
+
+  const subtotal = order.line_items.reduce((acc, item) => {
+    return acc + item.amount * item.quantity
+  }, 0)
 
   return (
     <div className="App">
       <h1>React Example</h1>
       <div className='container'>
-        <div>
+        <div style={{ width: "30rem" }}>
           <h2>
             Select your onboard meal
           </h2>
@@ -57,13 +71,15 @@ function App() {
           }
           <div className='row' style={{ marginTop: "1rem" }}>
             <p><b>Total</b></p>
-            <p><b>{(100 + order.subtotal / 100).toLocaleString("en-US", { style: "currency", currency: "USD" })}</b></p>
+            <p><b>{(100 + subtotal / 100).toLocaleString("en-US", { style: "currency", currency: "USD" })}</b></p>
           </div>
         </div>
       </div>
       <button onClick={() => onCheckout()}>
         Checkout
       </button>
+      {success && <div>Success!</div>}
+      {error && <div>{error}</div>}
     </div>
   )
 }
