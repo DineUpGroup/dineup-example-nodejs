@@ -16,6 +16,10 @@ See [index.tsx](src/pages/index.tsx) for the client integration and [[...path].t
 
 ## Usage 
 
-To start the server:
+Install packages:
+
+` npm run install`
+
+Start the server:
 
 `npm run dev`
