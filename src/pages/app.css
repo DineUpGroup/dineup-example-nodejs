@@ -1,4 +1,4 @@
-#root {
+html {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   max-width: 1280px;
   margin: 0 auto;
@@ -39,4 +39,20 @@ p {
 .food {
   font-size: 0.825rem;
   line-height: 1.25rem;
+}
+
+button {
+  background: #F5F5F5;
+  border: 1px solid #E0E0E0;
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-size: 0.825rem;
+  line-height: 1.25rem;
+  color: #000000;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #E0E0E0;
 }

@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 import { DineUp, ClientOrder } from "dineup-clientjs";
 
 const dineup = new DineUp({
-  element: "dineup-order-element"
+  element: "dineup-order-element",
+  live_mode: false
 });
 
 function App() {
@@ -39,7 +40,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>React Example</h1>
+      <h1>Checkout Example</h1>
       <div className='container'>
         <div style={{ width: "30rem" }}>
           <h2>
@@ -78,7 +79,7 @@ function App() {
       <button onClick={() => onCheckout()}>
         Checkout
       </button>
-      {success && <div>Success!</div>}
+      {success && <h3 >Success! Your flight is booked</h3>}
       {error && <div>{error}</div>}
     </div>
   )

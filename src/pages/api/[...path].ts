@@ -13,7 +13,7 @@ export default async function Handler(req: NextApiRequest, res: NextApiResponse)
     if (!order || order.state === OrderState.Paid) {
       // Create a new order on each action that represents the customer going to a checkout/booking page
       order = await dineup.createOrder({
-        airport_code: "test", // Always use test here as that is the only airport available in the test environment
+        airport_code: "TEST", // Always use TEST here as that is the only airport available in the test environment
         flight_date: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
         flight_identifier: "AB123",
         customer_email: "test@dineup.com",
